@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>chineses.me</id>
+    <title>言</title>
+    <updated>2021-10-08T07:05:39.116Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="chineses.me"/>
+    <link rel="self" href="chineses.me/atom.xml"/>
+    <rights>All rights reserved 2021, 言</rights>
+    <entry>
+        <title type="html"><![CDATA[go]]></title>
+        <id>https://chineses.me/go</id>
+        <link href="https://chineses.me/go"/>
+        <updated>2021-10-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[free
+]]></summary>
+        <content type="html"><![CDATA[<p>free</p>
+]]></content>
+    </entry>
+</feed>
