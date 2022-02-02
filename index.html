@@ -29,16 +29,6 @@
 <h1> ☘️Thoughts, stories and ideas🍀</h1
 
 
-		{% for thought in thoughts %}
-		<section class="thought">
-
-
-			<div class="thought-date"><a class="thought-date" id="{{ thought.time | date(format='%s', timezone=thought.timezone) }}" href="#{{ thought.time | date(format='%s', timezone=thought.timezone) }}">{{ thought.time | date(format='%H:%M %p | %Y-%m-%d', timezone=thought.timezone) }}</a></div>
-			<div class="thought">
-				{{ thought.rendered_text }}
-			</div>
-		</section>
-		{% endfor %}
 
 		<hr>
 		<p style="text-align:center">
