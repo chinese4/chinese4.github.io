@@ -1,0 +1,38 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>thoughts</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="/style.css">
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💭</text></svg>">
+	</head>
+	<body>
+		<h1>🌱 thoughts 🌱</h1>
+
+    <p><a href="https://lin.bearblog.dev/#top/">#Home</a>&#x2002;
+   <a href="https://lin.bearblog.dev/blog/">#Blog</a>&#x2002;
+   <a href="https://web.thoughts.page/">#Thoughts</a>&#x2002;
+   <a href="https://lin.bearblog.dev/about/">#About</a></p>&#x2002;
+
+		{% for thought in thoughts %}
+		<div class='thought' id="{{ thought.time | date(format='%s', timezone=thought.timezone) }}">
+			<h3><a href="#{{ thought.time | date(format='%s', timezone=thought.timezone) }}">{{ thought.time | date(format='%b %d, %Y - %-I:%M%p', timezone=thought.timezone) }}</a></h3>
+			<p>{{ thought.rendered_text }}</p>
+		</div>
+		{% endfor %}
+
+<hr>
+		<p style="text-align:center">
+			Up ⇡<a href="https://web.thoughts.page/#top">
+
+
+Thoughts, stories and ideas.
+<a href="https://web.thoughts.page/#top">
+
+ ✍ with ❤
+
+		</p>
+	</body>
+</html>
