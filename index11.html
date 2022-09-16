@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>fsharpWorks: F# training and consulting</title>
+    <meta name="description" content="A team of F# experts that can offer you a complete range of services including F# training, consulting, and functional-first development." />
+    <meta name="keywords" content="" />
+    <meta name="author" content="fsharpWorks">
+
+    <!-- generated using http://realfavicongenerator.net/ -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://fsharpworks.com/icon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://fsharpworks.com/icon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://fsharpworks.com/icon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://fsharpworks.com/icon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://fsharpworks.com/icon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://fsharpworks.com/icon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://fsharpworks.com/icon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://fsharpworks.com/icon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://fsharpworks.com/icon/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="https://fsharpworks.com/icon/favicon-32x32.png"> sizes="32x32">
+    <link rel="icon" type="image/png" href="https://fsharpworks.com/icon/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="https://fsharpworks.com/icon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="https://fsharpworks.com/icon/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="https://fsharpworks.com/icon/manifest.json">
+    <link rel="mask-icon" href="https://fsharpworks.com/icon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="https://fsharpworks.com/icon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#cccccc">
+    <meta name="msapplication-TileImage" content="https://fsharpworks.com/icon/mstile-144x144.png">
+    <meta name="msapplication-config" content="https://fsharpworks.com/icon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Twitter card -->
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://fsharpworks.com/images/fsharpworks-sq.png">
+    
+    <meta name="twitter:site" content="@fsharpWorks">
+    <meta name="twitter:title" content="fsharpWorks: F# training and consulting">
+    <meta name="twitter:description" content="A team of F# experts that can offer you a complete range of services including F# training, consulting, and functional-first development.">
+    <meta name="twitter:image:alt" content="fsharpWorks logo">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href='https://fsharpworks.com/styles/core-style.css' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://www.fsharpworks.com",
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "url": "https://www.fsharpworks.com",
+        "email": "info@fsharpworks.com",
+        "contactType": "Customer service"
+      }]
+    }
+    </script>    
+</head>
+<body>
+
+    <div class="container">
+    <div class="row header fw-logo">
+        <div class="col-lg-6 col-md-8">
+            <img src="https://fsharpworks.com/images/fsharp_works_logo_100.png" alt="fsharpWorks logo" class="img-responsive" />
+        </div>
+        <div class="col-lg-6 col-md-4 header-tagline">
+            <h2 class="header-tagline">The safe choice for functional-first development</h2>
+        </div>
+    </div>
+</div>
+
+<div class="fw-photos fw-photos-hp">
+<div id="fworks-banner" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner" role="listbox">
+    <div class="img1 item active"></div>
+    <div class="img2 item"></div>
+    <div class="img3 item"></div>
+    <div class="img4 item"></div>
+    <div class="img5 item"></div>
+  </div>
+  <div class="overlay">
+    <link href="https://fsharpworks.com"/>
+    <h2>Welcome to <b>fsharpWorks</b></h2>
+    <p>A team of F# experts that can offer you a complete range of services including F# training, consulting, and functional-first development.</p>
+    <p class="btns">
+      <a class="btn btn-info" href="mailto:info@fsharpworks.com"><i class="fa fa-envelope"></i>&nbsp; Contact Us</a>
+      <a class="btn btn-info" href="https://twitter.com/fsharpWorks"><i class="fa fa-twitter"></i>&nbsp; Follow Us</a>
+      <link href="https://www.linkedin.com/company/fsharpworks"/>
+      <link href="https://github.com/fsharpworks"/>
+    </p>
+  </div>
+  
+   <div class="overlay2">
+    <div class="container">
+        <div class="row fw-header">
+            <ul class="nav nav-pills" id="navbar">
+                <li class="active"><a href="/">Home</a></li>
+                <li class=""><a href="/workshops.html">Workshops</a></li>
+                <li class=""><a href="/materials.html">Books and talks</a></li>
+                <li class=""><a href="/testimonials.html">Testimonials</a></li>
+                <li class=""><a href="/partners.html">Partners</a></li>
+                <li class=""><a href="/team.html">About us</a></li>
+            </ul>
+        </div>
+    </div>
+  </div>
+
+  
+  <a class="left carousel-control" href="https://fsharpworks.com/#fworks-banner" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="https://fsharpworks.com/#fworks-banner" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+  <div class="col-md-4">
+    <h1 id="our-services">Our services</h1>
+
+    <p>We offer a complete range of services including training, F# consulting, and full project development.</p>
+
+    <p>We believe strongly in the benefits of using F#, but we also understand the challenges
+around adding F# into your software development process.  Thats’s why we offer training, support and other
+services to make your use of F# as painless as possible.</p>
+
+    <p><a href="https://fsharpworks.com/workshops.html">Read more about our workshops…</a></p>
+
+  </div>
+  <div class="col-md-4">
+    <h1 id="our-team">Our team</h1>
+
+    <p>The <strong>fsharpWorks</strong> team has many years of experience solving real-world problems with F# in a wide range of areas
+including finance, business application development, machine learning and other.</p>
+
+    <p>We are experts in integrating F#
+into your software development mix, having written many of the definitive libraries, books, and blogs on these topics!</p>
+
+    <p><a href="team.html">Read more about the team…</a></p>
+
+  </div>
+  <div class="col-md-4">
+    <h1 id="our-technology">Our technology</h1>
+
+    <p>We think that F# is the best technology for you because it offers a unique combination of
+correctness, time to market, efficiency and an ability to handle complex problems.</p>
+
+    <p><img src="https://fsharpworks.com/images/fsharp_logo.png" alt="F# Software Foundation" style="width:110px;float:right;margin:0px 0px 0px 15px" />
+We are active members of the F# open-source community and we
+are proud to support the F# Software Foundation as silver sponsors.</p>
+
+    <p><a href="testimonials.html">Read testimonials from our customers…</a></p>
+
+  </div>
+</div>
+
+<div class="row fw-events">
+<div class="col-sm-7 fw-future">
+
+  <h1 id="events">Upcoming events</h1>
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+
+  <h3>F# in Finance - Online</h3>
+  <div class="row">
+  <div class="col-sm-10">
+    <p>Join our 6-lecture online <a href="/workshops/finance.html">F# in Finance</a>
+    any time and follow at your own pace, or contact us to arrange a private training.
+    The workshop teaches practical functional concepts, data analysis with F# and more!</p>
+  </div>
+  <div class="col-sm-2">
+    <a href="http://quantshub.com/content/f-and-functional-programming-finance-tomas-petricek-2" class="btn btn-success" role="button">Join</a>
+  </div>
+  </div>
+
+  <h3>Accessing Data with Type Providers - Online</h3>
+  <div class="row">
+  <div class="col-sm-10">
+    <p>In this Pluralsight course by Tomas, you will learn how to easily
+    call JSON-based REST services using type providers, package your F# code into a
+    reusable .NET library, and integrate it into a C# ASP.NET application.</p>
+  </div>
+  <div class="col-sm-2">
+    <a href="https://www.pluralsight.com/courses/accessing-data-fsharp-type-providers" class="btn btn-success" role="button">Join</a>
+  </div>
+  </div>
+
+  <h3>On-site Private Training</h3>
+  <div class="row">
+  <div class="col-sm-10">
+    <p>Do you want to gain practical hands-on F# skills? We offer private on-site trainings
+    and consulting to fit your needs.</p>
+  </div>
+  <div class="col-sm-2">
+    <a href="mailto:info@fsharpworks.com" class="btn btn-success" role="button">Contact us!</a>
+  </div>
+  </div>
+
+<div class="fw-testimonials">
+  <h1>Training testimonials</h1>
+  <p>The fsharpWorks team has been providing F# trainings since 2011 and our attendees
+  include many F# community leaders. <a href="testimonials.html">Learn more on our testimonials page!</a></p>
+
+  <p class="fw-quote">
+    "I attended a fsharpWorks 2-day F# course run by Phil and Tomas. (...) I would highly
+    recommend this course for software developers that want to learn how to solve problems
+    using functional programming techniques and quickly get up to speed with F#."
+  </p>
+
+  <p class="fw-quote-author">
+    <a href="https://twitter.com/isaac_abraham/">Isaac Abraham</a>, F# MVP<br />
+    Attended FastTrack to F# in 2012
+  </p>
+</div>
+
+<h1>Our customers and partners</h1>
+
+<p>Our customers include both large and small companies working in a wide range of areas
+including finance and data analytics, security, enterprise software development,
+research and many others.</p>
+
+<div class="fw-logos fw-logos-hp">
+  <a href="https://www.bluemountaincapital.com/"><img src="https://fsharpworks.com/images/partners/bmc.png" alt="BlueMountain Capital logo" /></a>
+  <a href="http://www.danskebank.dk/"><img src="https://fsharpworks.com/images/partners/db.png" alt="Danske Bank logo" /></a>
+  <a href="http://www.genetec.com/"><img src="https://fsharpworks.com/images/partners/genetec.png" alt="Genetec logo" /></a>
+  <a href="http://www.microsoft.com/"><img src="https://fsharpworks.com/images/partners/msft.png" alt="Microsoft logo" /></a>
+  <a href="http://research.microsoft.com/"><img src="https://fsharpworks.com/images/partners/msr.png" alt="Microsoft Research logo" /></a>
+  <a href="http://www.skillsmatter.com/"><img src="https://fsharpworks.com/images/partners/skillsmatter.png" alt="Skills Matter logo" /></a>
+  <a href="http://www.webstep.no/"><img src="https://fsharpworks.com/images/partners/webstep.png" alt="Webstep logo" /></a>
+  <a href="http://broadrivercap.com/"><img src="https://fsharpworks.com/images/partners/broadriver.png" alt="BroadRiver logo" /></a>
+</div>
+
+</div> <!-- END # Col -->
+<div class="col-sm-1"></div>
+<div class="col-sm-4 fw-past">
+
+<h1>News and updates</h1>
+  
+  <h3><a href="https://fsharp.eu/">F# Europe</a></h3>
+  <p>F# Europe is coming to Brussels in November 2020. Program announcements are coming soon Blind Bird tickets now available.</p>
+
+  
+  <h3><a href="http://fsharpworks.com/survey.html">Annual F# Survey</a></h3>
+  <p>As the F# community continues to grow, we think that it is helpful to get hard data on how we use F#, what is going well, and what needs more work. That’s why we have been running an <a href="http://fsharpworks.com/survey.html">annual F# community survey</a> since 2015!</p>
+
+  
+  <h3><a href="https://vimeo.com/277243646">Practical machine learning with Mathias</a></h3>
+  <p>Learn more about Mathias’ popular machine learning workshop in this interview from NDC Oslo!</p>
+
+  
+  <h3><a href="http://fsharpconf.com/">fsharpConf 2018</a></h3>
+  <p>We helped to organise fsharpConf 2018, one-day virtual F# conference done in partnership with Channel 9. The conference featured 9 talks covering everything from web and business applications to games and quantum computing. <a href="https://channel9.msdn.com/Events/FSharp-Events/fsharpConf-2018">Watch the recordings!</a></p>
+
+  
+  <h3><a href="https://www.youtube.com/watch?v=lv2N6RZ5FlM">Tomas talks with Brian Troutwine about his CodeMesh talk</a></h3>
+  <p>After his CodeMesh talk, Tomas spent 5 minutes recording this quick interview with Brian Troutwine! We chatted about aliens, mathematics, computer science, data science and everything…</p>
+
+  
+  <h3><a href="https://www.youtube.com/watch?v=LxJwwsOUHXI">Democratizing data science</a></h3>
+  <p>What if you could look at the source code behind any visualization, understand how it works, run it to check the results and modify the parameters to explore different aspects of the data? Learn about the work Tomas has been doing using F# and Fable!</p>
+
+  
+  <h3><a href="https://fsharpworks.com/articles/six-years-of-teaching-fsharp.html">Six years of FastTrack to F#</a></h3>
+  <p>Six years ago, we run the first F# FastTrack course. To celebrate the anniversary, we are offering 25% off the upcoming course and Tomas Petricek also used this opportunity to reflect on some of the interesting developments in the course and the F# ecosystem more generally.</p>
+
+  
+  <h3><a href="https://skillsmatter.com/conferences/8053-f-sharp-exchange-2017">London F# eXchange 2017</a></h3>
+  <p>The fsharpWorks team helped to organize the F# eXchange conference in London. Watch Tomas Petricek’s talk on <a href="https://skillsmatter.com/skillscasts/9835-observables-events-asynchronous-sequences-and-other-wild-animals">Observables, Events, Asynchronous Sequences and Other Wild Animals</a>.</p>
+
+  
+  <h3><a href="http://brandewinder.com/2017/02/11/fsharp-azure-function-from-the-ground-up-part-1/">Azure Functions with F#</a></h3>
+  <p>Mathias wrote a series of blog posts on implementing Azure Functions using F#. Get started with F# and server-less:</p>
+
+<ul>
+  <li><a href="http://brandewinder.com/2017/02/11/fsharp-azure-function-from-the-ground-up-part-1/">Azure Function from the ground up (I.)</a></li>
+  <li><a href="http://brandewinder.com/2017/03/06/fsharp-azure-function-from-the-ground-up-part-2/">Azure Function from the ground up (II.)</a></li>
+  <li><a href="http://brandewinder.com/2017/04/01/azure-function-app-diagram/">Azure Functions solution diagrams</a></li>
+</ul>
+
+
+
+
+</div> <!-- END # Col -->
+</div>
+<p><!-- END # Row --></p>
+
+<div class="row fw-events">
+  <h1 style="margin:20px 0px 0px 15px">Past events</h1>  
+  
+    
+  
+  
+  
+  
+  
+  
+    <div class="col-sm-4">
+    
+    
+      
+      <h3>
+      
+        
+        
+        21-22 Apr 2020, Porto
+      </h3>
+      <p>
+        Mathias did two-day practical machine learning workshop at NDC Copenhagen.
+      </p>
+      
+      <h3>
+      3 Apr 2020, Copenhagen
+      </h3>
+      <p>
+        The fsharpWorks team did two talks at NDC Copenhagen.
+      </p>
+      
+      <h3>
+      
+        
+        
+        1-2 Apr 2020, Copenhagen
+      </h3>
+      <p>
+        Mathias did two-day practical machine learning workshop at NDC Copenhagen.
+      </p>
+      
+      <h3>
+      13 Feb 2020, Kraków
+      </h3>
+      <p>
+        Tomas talked about composable functional libraries at LambdaDays.
+      </p>
+      
+      <h3>
+      
+        
+        
+        14-18 Oct 2019, Sydney
+      </h3>
+      <p>
+        Mathias taught his machine learning workshop, and discussed Dungeons, Dragons, and domain modeling.
+      </p>
+      
+      <h3>
+      
+        
+        
+        25-27 Sep 2019, San Francisco
+      </h3>
+      <p>
+        Scott taught his domain modeling workshop open fsharp, a two-days F# conference in San Francisco.
+      </p>
+      
+      <h3>
+      
+        
+        
+        9-10 Sep 2019, London
+      </h3>
+      <p>
+        Tomas taught the F# FastTrack course in London. Check out the <a href="https://fsharpworks.com/workshops/fast-track.html">course details</a> and contact us to join the next session!
+      </p>
+      
+      <h3>
+      
+        
+        
+        16-17 May 2019, London
+      </h3>
+      <p>
+        Tomas presented a talk on Software Engineering principles at NewCrafts 2019.
+      </p>
+      
+      <h3>
+      
+        
+        
+        4-5 Apr 2019, London
+      </h3>
+      <p>
+        The fsharpWorks team and our partners joined the F# eXchange 2019.
+      </p>
+      
+      <h3>
+      
+        
+        
+        2-3 Apr 2019, Milan
+      </h3>
+      <p>
+        Mathias taught a hands-on workshop on machine learning and functional programming in Milan.
+      </p>
+    
+    </div>
+  
+    <div class="col-sm-4">
+    
+    
+      
+      <h3>
+      
+        
+        
+        6-7 Dec 2018, London
+      </h3>
+      <p>
+        Tomas taught the F# FastTrack course in London. Check out the <a href="https://fsharpworks.com/workshops/fast-track.html">course details</a> and contact us to join the next session!
+      </p>
+      
+      <h3>
+      
+        
+        
+        26-28 Sep 2018, San Francisco
+      </h3>
+      <p>
+        Tomas talked interactive web applications, and ran a workshop on Async and reactive abstractions at Open F#.
+      </p>
+      
+      <h3>
+      
+        
+        
+        17-18 Sep 2018, Seattle
+      </h3>
+      <p>
+        Tomas discussed the challenges of designing compilers for live coding.
+      </p>
+      
+      <h3>
+      
+        
+        
+        11-15 Jun 2018, Oslo
+      </h3>
+      <p>
+        The fsharpWorks team did three talks at NDC Oslo.
+      </p>
+      
+      <h3>
+      
+        
+        
+        7-10 May 2018, Minnesota
+      </h3>
+      <p>
+        Scott and Mathias talked about machine learning and domain modelling at NDC Minnesota.
+      </p>
+      
+      <h3>
+      
+        
+        
+        25-26 Apr 2018, Chicago
+      </h3>
+      <p>
+        Tomas talked about F# and functional programming at the GOTO conference.
+      </p>
+      
+      <h3>
+      17 Apr 2018, Seattle
+      </h3>
+      <p>
+        Tomas taught a course on capturing domain logic in F#, from types to domain specific languages.
+      </p>
+      
+      <h3>
+      16 Apr 2018, Online
+      </h3>
+      <p>
+        fsharpWorks partnered with Channel 9 to organise a one-day virtual F# conference, fsharpConf.
+      </p>
+      
+      <h3>
+      
+        
+        
+        9-10 Apr 2018, Milan
+      </h3>
+      <p>
+        Mathias taught a hands-on workshop on machine learning and fnctional programming in Milan.
+      </p>
+      
+      <h3>
+      
+        
+        
+        5-6 Apr 2018, London
+      </h3>
+      <p>
+        The fsharpWorks team helped to organize and spoke at the F# eXchange 2018.
+      </p>
+    
+    </div>
+  
+    <div class="col-sm-4">
+    
+    
+      
+      <h3>
+      
+        
+        
+        14-16 Mar 2018, Copenhagen
+      </h3>
+      <p>
+        Mathias did two-day practical machine learning workshop at NDC Copenhagen.
+      </p>
+      
+      <h3>
+      
+        
+        
+        22-23 Feb 2018, Kraków
+      </h3>
+      <p>
+        Tomas talked about rethinking compilers with F# at LambdaDays.
+      </p>
+      
+      <h3>
+      14 Feb 2018, London
+      </h3>
+      <p>
+        Tomas talked about Fable and Elm-architecture at F# meetup.
+      </p>
+      
+      <h3>
+      
+        
+        
+        15-19 Jan 2018, London
+      </h3>
+      <p>
+        Scott talked about the power of composition at NDC London.
+      </p>
+      
+      <h3>
+      
+        
+        
+        30 Oct - 1 Nov 2017, Trondheim
+      </h3>
+      <p>
+        Mathias shared his experience using F# in a Machine Learning competition.
+      </p>
+      
+      <h3>
+      
+        
+        
+        17-20 Oct 2017, Kongsberg
+      </h3>
+      <p>
+        Mathias talked F# and Machine Learning at NDC TechTown.
+      </p>
+      
+      <h3>
+      
+        
+        
+        16-17 Oct 2017, London
+      </h3>
+      <p>
+        Tomas taught the F# FastTrack course in London. Check out the <a href="https://fsharpworks.com/workshops/fast-track.html">course details</a> and contact us to join the next session!
+      </p>
+      
+      <h3>
+      
+        
+        
+        28-29 Sep 2017, San Francisco
+      </h3>
+      <p>
+        Mathias helped to organize open fsharp, a two-day F# conference in the heart of San Francisco.
+      </p>
+      
+      <h3>
+      
+        
+        
+        14-18 Aug 2017, Sydney
+      </h3>
+      <p>
+        Scott and Mathias talked at NDC Sydney and hosted the functional programming office hours session.
+      </p>
+      
+      <h3>
+      
+        
+        
+        14-16 Jun 2017, Oslo
+      </h3>
+      <p>
+        Scott and Mathias talked at NDC Oslo and hosted the functional programming office hours session.
+      </p>
+    
+    </div>
+  
+</div>
+
+</div>
+
+
+
+    <footer>
+        <div class="container">
+            <div class="row footer">
+                <div class="col-lg-12 text-center">
+                    <p>&copy; fsharpWorks 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-50976719-1', 'fsharpworks.com');
+        ga('send', 'pageview');
+    </script>
+</body>
+</html>
