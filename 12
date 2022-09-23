@@ -1,0 +1,557 @@
+<!DOCTYPE HTML>
+<html lan=en>
+  <head>
+    <title>index | Cem's Website</title>
+    <meta charset="utf-8">
+    <meta name="Description" content="Cem Keylan's Website">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+      html {font-family:monospace;font-size:16px;color:#282a36;}
+      body {
+	  width: 90%;
+	  max-width: 1050px;
+	  margin-left: auto;
+	  margin-right: auto;
+	  margin-top: 20px;
+	  overflow: none;
+          overflow-y: scroll;
+	  padding-right: 10px;
+	  padding-left: 10px;
+      }
+      a{text-decoration:none;font-weight:bold;color:#282a36;}
+      a:hover{text-decoration:underline;}
+      @media (prefers-color-scheme: dark) {
+          html {color: white;background:#282a36;}
+          a{color:white;}
+      }
+    </style>
+    <link rel="stylesheet" href="/static/syntax.css">
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <div class="header">
+      <nav>
+        <a href='/'>index</a> |
+        <a href="/software.html">software</a> |
+        <a href="/blog.html">blog</a> |
+        <a href="/contact.html">contact</a> |
+        <a href="/sysmgr">sysmgr</a> |
+      </nav>
+    </div>
+    <hr>
+    <p>
+<p>Hello! I am Cem, and this is my little blog that I rarely ever use. I am a
+Software Engineering student at the Berlin CODE university, the maintainer of
+Carbs Linux, and I occasionally compose music (mostly jazz and classical).</p>
+
+<p>My repositories are really scattered, so see the <a href="/software.html">software</a> section if you
+are looking for one of my works.</p>
+
+<p>This page is curl friendly! Just replace &lsquo;.html&rsquo; with &lsquo;.txt&rsquo;, and you will be
+able to view this site in your favourite pager! In your terminal simply type:</p>
+
+<pre><code>curl -sL cemkeylan.com/index.txt | less
+</code></pre>
+
+<p><a href="/rss.xml">RSS Feed</a> | <a href="/blog.html">Blog Index</a></p>
+
+<hr />
+
+<h1>My thoughts on execline</h1>
+
+<p><a href="/blog/20211012-execline.html">Permalink</a></p>
+
+<p>Date: Oct 12 2021</p>
+
+<p>With the gaining popularity of the <a href="https://www.skarnet.org/software/s6-rc/">s6-rc</a>, I have recently decided to check out
+<a href="https://www.skarnet.org/software/execline/">execline</a>. It is a shell-like scripting language that is built around chaining
+commands together. There is no interpreter, there is no &lsquo;built-in&rsquo; functionality
+even though the docs might make you think there are. Execline is best described
+as a suite of tools that imitate the functionality of a shell.</p>
+
+<p>There are a ton of information on the execline&rsquo;s page, especially discussing
+why skarnet prefers execline instead of <code>/bin/sh</code>. Those points are mostly
+valid, shells are a nightmare, and they suck at being compliant to the POSIX
+specification. What I don&rsquo;t agree with the <a href="http://www.skarnet.org/software/execline/dieshdiedie.html">why not sh</a> page, however, is the
+part on performance. Even though execline does not have an interactive shell
+implementation of its own, it is still much slower than other shells simply by
+its design. Since the design of execline is built on process chaining, it
+requires spawning new processes for things as basic as variable declaration.
+Variable manipulation is the cheapest operation you would expect from a shell,
+but in execline, every operation costs the same regardless of how simple it is.</p>
+
+<p>Throughout my weeks of toying around with execline, I have came to the
+conclusion that execline is much better in simple scripts only. Execline is
+as usable as any shell out there, but even with its advantages over <code>sh</code>,
+execline is only better if it&rsquo;s simple. Execline is really good for certain
+specific situations such as service scripts (as used in s6-rc), or where you
+were already meant to chain a couple of commands together. After all, skarnet
+already presents these limitations on the website of execline.</p>
+
+<p>Execline can be leveraged as how s6-rc compiles service databases with other
+utilities, but I don&rsquo;t think it can be used as a shell replacement itself. It&rsquo;s
+not the next shiny thing to jump on to replace all your shell scripts with
+(unless you have really basic shell scripts). It does not have the flexibility
+nor the performance of the shell for scripts that can be considered a little
+over than the &ldquo;basic&rdquo;.</p>
+
+<hr />
+
+<h1>Reimplementing <code>sysmgr</code> in C</h1>
+
+<p><a href="/blog/20201002-reimplementing-sysmgr-in-c.html">Permalink</a></p>
+
+<p>Date: Oct 02 2020</p>
+
+<p>For a while, I have been thinking about implementing <a href="https://git.ckyln.com/sysmgr">sysmgr</a> in C. I started
+thinking about the inefficiencies of sysmgr. POSIX sh isn&rsquo;t particularly
+designed to have ultimate control over child processes. There are basic job
+management features that are <em>just enough</em> for sysmgr to do its job. The
+biggest pain is having to use tools like <code>sleep(1)</code> and <code>kill(1)</code>. Calling
+sleep every second, and using the kill command to check whether a process is
+alive or not is extremely inefficient. Some shells <em>do</em> include these commands
+built-in, but it isn&rsquo;t specified by POSIX, but one should never take this as
+granted.</p>
+
+<p>Lately, I have been adding C utilities to sysmgr to make it more efficient. This
+defeats the initial purpose of sysmgr, being a service manager in pure POSIX
+shell. My main purpose, however, is making sysmgr efficient and simplistic. It
+mostly imitates <code>runit</code> without dealing with all the complexity of the
+over-thinked <code>supervise</code> directory, nor the logging stuff. Most of these can be
+handled by the service script itself anyway. That&rsquo;s why instead of this ugly
+C/POSIX sh hybrid, I decided to implement it all in C.</p>
+
+<p>I am not a C expert or anything, I am learning a lot as I am writing the
+program. I want it to be C99 and portable (for BSD). It&rsquo;s currently not
+functional at all, but, you can see its current state <a href="https://git.ckyln.com/sm">here</a>.</p>
+
+<p>EDIT Oct 10 2020:</p>
+
+<p>I did the initial release of this C version of sysmgr, which is more stable,
+and performant than the POSIX sh version. It still has rough edges, but is
+completely usable.</p>
+
+<hr />
+
+<h1>Trust in Distributed Environments</h1>
+
+<p><a href="/blog/20200908-trust-in-distributed-environments.html">Permalink</a></p>
+
+<p>Date: Sep 08 2020</p>
+
+<p>A few days ago, in the <code>#kisslinux</code> IRC channel, jedahan mentioned an
+implementation for trust in the package manager. While I was intrigued by the
+idea initially, I decided not to implement this for the upcoming 4.0.0 release.
+That is because the package manager and the distribution itself is already
+centered on trust. However, this idea made me think a lot about &ldquo;trust&rdquo; in
+distributed environments.</p>
+
+<p>Who and what would you trust? Would you trust Microsoft? Would you trust a
+binary? Would you only trust a so called &ldquo;reproducible&rdquo; build?</p>
+
+<p>Jedahan mentioned the possibility that a repository maintainer could create a
+package that would be normally in the distribution so they could mess your
+system up. He suggested a &ldquo;source&rdquo; system where you know where each package
+comes from. This way the package manager can warn you when the source of a
+package is changed. As I have said this idea intrigued me at the beginning, but
+here is why it is complex and unnecessary.</p>
+
+<p>The package manager would warn you every time you fork a package and apply your
+changes. Both with kiss and CPT, you already see git logs when the repositories
+are fetched. Those logs address each and every file that has been edited, added,
+removed, or renamed. CPT also has support for rsync, which is called verbosely.
+While not as descriptive, rsync also shows what&rsquo;s changed/added and what&rsquo;s
+deleted.</p>
+
+<p>Also, back on April, I have added submodule support to my fork of kiss, which
+Dylan adapted on May 19. I have added this feature because it solves a similar
+issue. I want to have only some packages from a repository and leave the rest
+of them. This way I am the one in control of what goes inside my repositories.</p>
+
+<p>Minor annoyances aside, would this solve the issue of trust? Maybe this evil
+repository maintainer decides to botch a package that was already in their
+repository not provided by your distribution. Should we then track the source
+files, build files as well? But those change all the time.</p>
+
+<p>I believe that this environment is as trustworthy as it can get, a repository
+system with package build instructions that easy to read and understand, easy to
+history check, easy to limit, and easy to allow. KISS and Carbs Linux have a
+single maintainer. I maintain Carbs and Dylan maintains KISS. You are not
+trusting an organization, you are trusting individuals that you can easily
+converse on the internet. The same goes for most community repository
+maintainers out there. Trying to implement more would be a &ldquo;security theater&rdquo;
+that would be a hassle for the maintainers, the users and the package manager
+without a noticeable benefit to any.</p>
+
+<hr />
+
+<h1>wpa_add script</h1>
+
+<p><a href="/blog/20200828-wpa-add-script.html">Permalink</a></p>
+
+<p>Date: Aug 28 2020</p>
+
+<p>I have this script named <code>wpa_add</code>, which I use to easily add new WiFi when I
+am outside, possibly in a cafe. I have written this script because I don&rsquo;t like
+the way my girlfriend looks at me while thinking that I am an absolute moron for
+not using Windows 10, and the entirety of Linux is a circlejerk. It is only
+natural that she thinks this way. I use my own distribution that doesn&rsquo;t have
+things like <code>dbus</code>, or <code>NetworkManager</code>, or one of those common desktop
+environments. You could install it by creating a simple package, but I am happy
+to not have any of those in my system.</p>
+
+<p>This script uses wpa-supplicant to add a new network and reconfigure. It uses
+dmenu for input, however you could replace dmenu calls with some command line
+prompts. I am doing the following assumptions:
+- You can manipulate <code>wpa_supplicant</code> without root access.
+- The configuration is on <code>/etc/wpa_supplicant.conf</code>.
+- You can edit <code>/etc/wpa/supplicant.conf</code>.</p>
+
+<p>If you want to ensure the above just do the following (as root):</p>
+
+<pre><code class="sh"># Add yourself to the wheel group if you aren't already.
+adduser user wheel
+
+# Change the ownership of /etc/wpa_supplicant.conf
+chown root:wheel /etc/wpa_supplicant.conf
+
+# Make sure the configuration can be edited by the wheel group.
+chmod 664 /etc/wpa_supplicant.conf
+</code></pre>
+
+<p>Your <code>wpa_supplicant</code> configuration must include the following line (or something similar):</p>
+
+<pre><code class="plaintext">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel
+</code></pre>
+
+<p>Here is the script</p>
+
+<pre><code class="sh">#!/bin/sh
+# Script to add wpa_supplicant networks through dmenu
+
+if [ "$1" ]; then
+    name=$1
+else
+    name=$(dmenu -p "Please enter network name, leave empty if you want to search" &lt;&amp;-)
+fi
+
+[ "$name" ] || {
+    wpa_cli scan
+    name=$(
+    wpa_cli scan_results | sed 1,2d | while read -r _ _ _ _ ssid _; do
+        # Hidden wifi are not to be returned
+        [ "$ssid" ] || continue
+        echo "$ssid"
+    done | sort -u | dmenu -l 10 -p "Please choose WiFi")
+    [ "$name" ] || exit 1
+}
+
+pass=$(dmenu -P -p "Please enter your password, leave empty if the network has open access.")
+
+if [ "$pass" ]; then
+    wpa_passphrase "$name" &lt;&lt;EOF&gt;&gt; /etc/wpa_supplicant.conf
+$pass
+EOF
+else
+    printf 'network={\n\tssid="%s"\n\tkey_mgmt=NONE\n\tpriority=-999\n}\n' "$name" &gt;&gt; /etc/wpa_supplicant.conf
+fi
+
+wpa_cli reconfigure
+</code></pre>
+
+<p>As I have said, you could do something similar in a command-line-only tool as
+well. This one uses <code>fzf</code> on WiFi selection.</p>
+
+<pre><code class="sh">#!/bin/sh -e
+
+stty="$(stty -g)"
+trap "stty $stty" EXIT INT TERM HUP
+
+if [ "$1" ]; then
+    name=$1
+else
+    printf 'Network Name, leave empty if you want to search: '
+    read -r name
+fi
+
+[ "$name" ] || {
+    wpa_cli scan &gt;/dev/null
+    name=$(
+    wpa_cli scan_results | sed 1,2d | while read -r _ _ _ _ ssid _; do
+        # Hidden wifi are not to be returned
+        [ "$ssid" ] || continue
+        echo "$ssid"
+    done | sort -u | fzf --prompt "Please choose WiFi: ")
+}
+
+[ "$name" ] || exit 1
+
+stty -echo
+printf 'Please enter your password, leave empty if the network has open access.\nPassword: '
+read -r pass
+
+if [ "$pass" ]; then
+    wpa_passphrase "$name" &lt;&lt;EOF&gt;&gt; /etc/wpa_supplicant.conf
+$pass
+EOF
+else
+    printf 'network={\n\tssid="%s"\n\tkey_mgmt=NONE\n\tpriority=-999\n}\n' "$name" &gt;&gt; /etc/wpa_supplicant.conf
+fi
+
+wpa_cli reconfigure
+</code></pre>
+
+<p>These scripts can be found as a gist <a href="https://git.io/JULL6">here</a></p>
+
+<hr />
+
+<h1>Static linking</h1>
+
+<p><a href="/blog/20200828-static-linking.html">Permalink</a></p>
+
+<p>Date: Aug 28 2020</p>
+
+<p>While I was working on a new initramfs generator for Carbs, I was once again
+reminded of the advantages of static linking software. Previously, I was using
+some really dumb script that was just basically using the package manager as a
+library for building the whole initramfs system from scratch. This system
+structure was completely statically linked, and the whole thing weighed around
+1.3MiB.</p>
+
+<p>Now, while <code>rd</code> (the small script that I had written) was good enough for me, it
+wouldn&rsquo;t be a fit to distribute with the system. It doesn&rsquo;t deal with dynamic
+binaries, kernel modules or library installation. So I have written this script
+that deals with those (kernel modules aren&rsquo;t done yet, though).</p>
+
+<p>The issue with build systems today are that the binaries are built dynamically
+unless you build the whole thing static. As long as there are shared libraries,
+the binaries will be dynamic as well. That&rsquo;s why the core repository of Carbs
+still contains dynamic binaries for gcc, binutils, util-linux and some other
+packages.</p>
+
+<p>The size of the new image with exactly the same binaries is a whopping 1.9MiB.
+While a size increase of 600KiB might not seem like a huge deal, I just want to
+tell you that busybox is static in both images, leaving ONLY TWO binaries that
+I install to my image; fsck and e2fsck. By switching from a static binary to
+dynamic + lib for only two programs, you require 600 KiB more space, and I have
+been talking about a gzip compressed cpio archive throughout this whole post.</p>
+
+<hr />
+
+<h1>Starting X without Xinit</h1>
+
+<p><a href="/blog/20200812-starting-x-without-xinit.html">Permalink</a></p>
+
+<p>Date: Aug 12 2020</p>
+
+<p>Most people who don&rsquo;t use a desktop environment use the <code>startx</code> command to
+initialize their X windowing system. Now, <code>startx</code> is a shell script that runs
+the C program <code>xinit</code> which basically runs <code>xorg-server</code>. Using xinit obviously
+has some nice perks. It makes some checks and runs your .xinitrc file. We don&rsquo;t
+need any of that though. Here is my X launcher:</p>
+
+<pre><code class="sh">#!/bin/sh
+
+export DISPLAY=${DISPLAY:-:0}
+trap "$HOME/.xinitrc" USR1
+
+(
+    trap '' USR1
+
+    exec X -keeptty :0 vt1
+) &amp;
+
+wait
+</code></pre>
+
+<p>You need to keep in mind that your .xinitrc should be an executable.</p>
+
+<hr />
+
+<h1>Why I dislike Arch and Gentoo</h1>
+
+<p><a href="/blog/20200508-why-i-dislike-arch-and-gentoo.html">Permalink</a></p>
+
+<p>Date: May 08 2020</p>
+
+<p>Over the years, I have used many many Linux distributions. The reason I am
+now using a distribution maintained by me, is because I am never truly satisfied
+about other people&rsquo;s work. Not that they are bad at they do, it&rsquo;s just that
+they don&rsquo;t share the same vision as me. And I have felt this way with almost
+every distribution I have used.</p>
+
+<h2>Arch Linux</h2>
+
+<p>Arch Linux itself feels like it became a &lsquo;meme distribution&rsquo;. Their user-base
+is a cult-like community that think they are superior for using Arch Linux.
+Now, you might be an Arch user, and might not be like this. I used Arch for
+a long time, and didn&rsquo;t feel this way, ever. I only see this level of cultism
+for Arch and systemd.</p>
+
+<p>If you ever call Arch bloated on an online community website, you will get
+lots of crap for it. But in fact, Arch Linux is bloated. Now this isn&rsquo;t due
+to having too many packages in the base installation. This is because of their
+packaging of software.</p>
+
+<p>Arch enables almost every single option in the package configuration, meaning
+lots of unnecessary dependencies, and packages with humongous sizes.</p>
+
+<p>Pacman is a rather slow package manager, and missing alternatives. For me,
+an alternatives system is a must.</p>
+
+<p>If you want to use a better binary distribution, use Void Linux. They have
+saner package configurations, and the environment just feels more UNIXy. xbps
+is really fast, and has an alternatives system.</p>
+
+<h2>Gentoo Linux</h2>
+
+<p>This will be the longer part, because my dislike for Gentoo is bigger than
+my dislike towards Arch. If you want to see how NOT to maintain a distribution,
+check out Gentoo.</p>
+
+<p>I&rsquo;ve used Gentoo for a few months, and I&rsquo;m saying this right out of the
+gate. Portage is the slowest piece of software that I have ever used on
+Linux. Maybe that&rsquo;s because I deliberately avoid software using Python,
+but Portage is most probably the slowest package manager that is being
+used.</p>
+
+<p>Portage depends on Bash, Python, and GNU wget. I have got a line count from
+<code>cloc</code>, doing a <code>find . \( -name '*.sh -o -name '*.py' \) -exec cloc {} +</code>.
+The source code of just <code>*.sh</code> and <code>*.py</code> files are over 100k lines of code.
+Then I got curious and runned cloc against the whole repository. Here is
+the output.</p>
+
+<pre><code>--------------------------------------------------------------------------------
+Language                      files          blank        comment           code
+--------------------------------------------------------------------------------
+Python                          703          20009          21411         102180
+Bourne Shell                     13            643            678           3911
+Bourne Again Shell               44            583            434           3172
+diff                             17             31            298            574
+YAML                              6             32             80            573
+XSD                               1             27             27            494
+C                                 2             56            128            291
+make                              1              7              6             19
+INI                               1              1              0             15
+reStructuredText                  1              5              4              9
+XSLT                              1              0              0              5
+--------------------------------------------------------------------------------
+SUM:                            790          21394          23066         111243
+--------------------------------------------------------------------------------
+</code></pre>
+
+<p>That&rsquo;s quite a lot.</p>
+
+<p>Portage is a package manager that tries to ease the configuration process of
+packages, but at the process makes it terribly complex to compose packages,
+and adds billions of portage configuration options. Configuring your first
+kernel is literally easier than configuring portage in a way you want. Users
+just do not know that they would be better off doing an LFS build for a much
+stabler system. My system was broken countless times while using Gentoo.
+Maintaining a Gentoo system is honestly harder than maintaining my own
+distribution.</p>
+
+<p><strong>EAPI</strong>, probably the worst thing about the Portage ecosystem. It is the most
+complex, hard to read, hard to learn packaging system ever made. Creating a
+USE flag system shouldn&rsquo;t have been this hard.</p>
+
+<hr />
+
+<h1>Editor Wizardry</h1>
+
+<p><a href="/blog/20200413-editor-wizardry.html">Permalink</a></p>
+
+<p>Date: Apr 13 2020</p>
+
+<p>To this day, I have tried lots of IDEs and text editors. Visual Studio, PyCharm,
+Sublime, Notepad++, Vim, Emacs, Pico, Atom, etc. The list goes on. I have even
+unironically used ed, and ironically used cat for a while.</p>
+
+<p>I have settled down after years and years of &ldquo;editor-hopping&rdquo;. I now have 3
+main editors that I use on a daily basis! Yeah, you have read it correct. I use
+3 editors on a daily basis. Those are,</p>
+
+<ul>
+<li>sed</li>
+<li>vi (not vim)</li>
+<li>emacs</li>
+</ul>
+
+
+<h2>Emacs</h2>
+
+<p>Emacs is a beast. Defining Emacs as a text-editor is wrong. It is a lisp
+interpreter, with text manipulation abilities.</p>
+
+<p>Now, I do like the concept of Integrated Development Environments. It&rsquo;s a shame
+that all of them suck. With Emacs I can fine-tune everything according to my
+taste, install the packages I need, configure them the way I like. With IDEs you
+get some nice plugins, and a tiny bit of customization, but that&rsquo;s it. You get
+an environment limited by the vision of someone else. Not to mention that most
+IDEs are proprietary software.</p>
+
+<p>I have stopped using Vim, because it is only meant to be a text editor. You can
+extend its features with plugins, but you can really see the impact with just a
+few of them. Vimscript is also really primitive, that&rsquo;s why people write plugins
+with Python, JS, and such. This further affects the speed of Vim. Most Emacs
+packages I have encountered are written in pure lisp. I have over 70 packages,
+yet my load time and overall speed is better than when I had Vim with 8 plugins.</p>
+
+<h3>Cons</h3>
+
+<ul>
+<li><strong>It comes with too many unnecessary features</strong> Emacs comes with multiple IRC
+clients, a mail reader, rss reader etc. I don&rsquo;t think they are badly
+implemented or anything, I would just prefer building up as I want to instead.</li>
+<li><strong>The defaults are not intuitive</strong> Now, I haven&rsquo;t actually tried any of them,
+but there is a reason &ldquo;Emacs distributions&rdquo;, such as &ldquo;Spacemacs&rdquo;, &ldquo;DOOM
+Emacs&rdquo;, &ldquo;Centaur&rdquo; exist. The base of Emacs, even with its unnecessary
+features, is unintuitive and complicated.</li>
+</ul>
+
+
+<p>Also, let&rsquo;s not forget that Emacs uses an ancient Lisp dialect.</p>
+
+<h2>Vi</h2>
+
+<p>I mostly use Emacs when I am dealing with projects. If my aim is to just make
+simple changes when I am on the terminal, I just pop up vi provided by busybox.
+I just like that it is fast and featureless. It barely gets the job done, and
+that&rsquo;s why I like it.</p>
+
+<h3>Cons</h3>
+
+<ul>
+<li><strong>No syntax highlighting</strong> Syntax highlighting is an important feature for me
+but I have learned to live without it. Since I don&rsquo;t edit large files with it,
+this is not the biggest con.</li>
+<li><strong>Hard to configure</strong> Busybox vi only has a limited featureset, which makes
+it hard to configure. It doesn&rsquo;t read an <code>rc</code> file, it uses the <code>$EXINIT</code>
+variable instead. Available options are limited. For example, you cannot
+convert the &ldquo;tab&rdquo; action to use space instead of tabs.</li>
+<li><strong>No visual selection support</strong> Sadly, <code>v/V</code> isn&rsquo;t implemented in busybox vi.</li>
+</ul>
+
+
+<h2>Sed</h2>
+
+<p>I use sed for when I am making small changes to small files, because it is
+faster than opening a file, making a change, saving, and exiting. Using regular
+expressions are much faster and efficient at such things.</p>
+
+<h3>Cons</h3>
+
+<ul>
+<li><strong>Risky unless you know what you are doing</strong> Since sed is operated on regex,
+you need to be extra careful. You are running that regex on the entire file
+without an option to &lsquo;undo&rsquo; (unless you have a sed that has a backup
+implementation).</li>
+</ul>
+
+    </p>
+    <a href="/index.txt">This page in plain-text</a>
+    <hr>
+    <p class=footer>Copyright &copy; 2019-2021 C++</p>
+  </body>
+</html>
